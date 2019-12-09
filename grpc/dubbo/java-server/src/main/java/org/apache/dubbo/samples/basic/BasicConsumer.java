@@ -72,38 +72,38 @@ public class BasicConsumer {
         /**
          * route guide sample
          */
-        System.out.println("-------- Start stream call test -------- ");
-        RouteGuideGrpc.IRouteGuide routeGuide = (RouteGuideGrpc.IRouteGuide) context.getBean("routeguide");
-        RouteGuideClient streamClient = new RouteGuideClient(routeGuide);
-        try {
-            List<Feature> features;
-            try {
-                features = RouteGuideUtil.parseFeatures(RouteGuideUtil.getDefaultFeaturesFile());
-            } catch (IOException ex) {
-                ex.printStackTrace();
-                return;
-            }
-            // Looking for a valid feature
-            streamClient.getFeature(409146138, -746188906);
-
-            // Feature missing.
-            streamClient.getFeature(0, 0);
-
-            // Looking for features between 40, -75 and 42, -73.
-            streamClient.listFeatures(400000000, -750000000, 420000000, -730000000);
-
-            // Record a few randomly selected points from the features file.
-            streamClient.recordRoute(features, 10);
-
-            // Send and receive some notes.
-            CountDownLatch finishLatch = streamClient.routeChat();
-
-            if (!finishLatch.await(1, TimeUnit.MINUTES)) {
-                streamClient.warning("routeChat can not finish within 1 minutes");
-            }
-        } finally {
-            //
-        }
+//        System.out.println("-------- Start stream call test -------- ");
+//        RouteGuideGrpc.IRouteGuide routeGuide = (RouteGuideGrpc.IRouteGuide) context.getBean("routeguide");
+//        RouteGuideClient streamClient = new RouteGuideClient(routeGuide);
+//        try {
+//            List<Feature> features;
+//            try {
+//                features = RouteGuideUtil.parseFeatures(RouteGuideUtil.getDefaultFeaturesFile());
+//            } catch (IOException ex) {
+//                ex.printStackTrace();
+//                return;
+//            }
+//            // Looking for a valid feature
+//            streamClient.getFeature(409146138, -746188906);
+//
+//            // Feature missing.
+//            streamClient.getFeature(0, 0);
+//
+//            // Looking for features between 40, -75 and 42, -73.
+//            streamClient.listFeatures(400000000, -750000000, 420000000, -730000000);
+//
+//            // Record a few randomly selected points from the features file.
+//            streamClient.recordRoute(features, 10);
+//
+//            // Send and receive some notes.
+//            CountDownLatch finishLatch = streamClient.routeChat();
+//
+//            if (!finishLatch.await(1, TimeUnit.MINUTES)) {
+//                streamClient.warning("routeChat can not finish within 1 minutes");
+//            }
+//        } finally {
+//            //
+//        }
         System.out.println("-------- End stream call test -------- \n");
         System.in.read();
     }

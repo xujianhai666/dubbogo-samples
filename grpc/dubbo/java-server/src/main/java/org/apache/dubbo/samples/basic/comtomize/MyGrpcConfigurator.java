@@ -47,6 +47,6 @@ public class MyGrpcConfigurator implements GrpcConfigurator {
 
     @Override
     public CallOptions configureCallOptions(CallOptions options, URL url) {
-        return options.withOption(CallOptions.Key.create("key"), "value").withDeadlineAfter(10, TimeUnit.SECONDS);
+        return options.withOption(CallOptions.Key.create("key"), "value").withDeadlineAfter(100, TimeUnit.SECONDS);
     }
 }

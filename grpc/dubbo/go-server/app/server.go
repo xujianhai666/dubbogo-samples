@@ -26,10 +26,9 @@ import (
 )
 
 import (
-	hessian "github.com/apache/dubbo-go-hessian2"
 	"github.com/apache/dubbo-go/common/logger"
 	"github.com/apache/dubbo-go/config"
-	_ "github.com/apache/dubbo-go/protocol/dubbo"
+	_ "github.com/apache/dubbo-go/protocol/grpc"
 	_ "github.com/apache/dubbo-go/registry/protocol"
 
 	_ "github.com/apache/dubbo-go/common/proxy/proxy_factory"
@@ -41,7 +40,7 @@ import (
 )
 
 var (
-	survivalTimeout = int(3e9)
+	survivalTimeout = int(3 * time.Second)
 )
 
 // they are necessary:
@@ -49,7 +48,6 @@ var (
 // 		export APP_LOG_CONF_FILE="xxx"
 func main() {
 
-	hessian.RegisterPOJO(&User{})
 	config.Load()
 
 	initSignal()
